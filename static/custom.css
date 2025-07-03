@@ -1,0 +1,247 @@
+/* Custom sharp styling for random topics blog */
+
+/* Sharp corners and modern aesthetics */
+.site-header h1 {
+  font-weight: 800;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-size: 2.5em;
+}
+
+.site-header h1 a {
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+.site-header h1 a:hover {
+  color: var(--accent-primary);
+}
+
+/* Enhanced post titles */
+h2.post-title {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  font-size: 1.4em;
+  margin-bottom: 0.5em;
+}
+
+/* Sharp code blocks */
+pre {
+  border-radius: 0;
+  border-left: 4px solid var(--main-link);
+  font-family: var(--font_monospace_code);
+  font-size: 0.9em;
+}
+
+/* Enhanced blockquotes */
+blockquote {
+  position: relative;
+  border-left: 4px solid var(--main-link);
+  background: linear-gradient(
+    90deg,
+    var(--blockquote-background) 0%,
+    rgba(26, 26, 26, 0.8) 100%
+  );
+}
+
+blockquote::before {
+  content: '"';
+  position: absolute;
+  top: -10px;
+  left: -15px;
+  font-size: 4em;
+  color: var(--main-link);
+  opacity: 0.3;
+  font-family: serif;
+}
+
+/* Sharp navigation */
+.site-header nav ul {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  padding: 0;
+}
+.site-header nav ul li {
+  display: inline-block;
+  margin: 0;
+}
+.site-header nav a {
+  border-radius: 0;
+  border: 2px solid var(--main-link);
+  background: transparent;
+  color: var(--main-link);
+  font-weight: 700;
+  padding: 0.7em 2.2em;
+  margin: 0;
+  box-shadow: none;
+  position: relative;
+  z-index: 1;
+  transition: background 0.2s, color 0.2s, border 0.2s;
+}
+.site-header nav a.active,
+.site-header nav a[aria-current="page"] {
+  background: var(--main-link);
+  color: #000;
+  border-color: var(--main-link);
+  z-index: 2;
+}
+.site-header nav a:hover:not(.active):not([aria-current="page"]) {
+  background: rgba(0, 212, 255, 0.15);
+  color: var(--main-link);
+  border-color: var(--main-link);
+}
+
+/* Enhanced buttons */
+a.button,
+button {
+  position: relative;
+  overflow: hidden;
+}
+
+a.button::before,
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--main-link);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+a.button:hover::before,
+button:hover::before {
+  left: 0;
+}
+
+/* Sharp dividers */
+hr {
+  position: relative;
+  background: linear-gradient(90deg, transparent, var(--hr), transparent);
+}
+
+hr::before {
+  content: "◆";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--page-background);
+  padding: 0 10px;
+  color: var(--main-link);
+  font-size: 0.8em;
+}
+
+/* Enhanced links */
+a {
+  position: relative;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--main-link);
+  transition: width 0.3s ease;
+}
+
+a:hover::after {
+  width: 100%;
+}
+
+/* Sharp post dates */
+a.post-date,
+.post-date-wrapper > time {
+  font-family: var(--font_monospace_code);
+  background: var(--code-background);
+  padding: 0.3em 0.6em;
+  border-radius: 3px;
+  border: 1px solid var(--code-border);
+}
+
+/* Enhanced images */
+.page-content img {
+  border-radius: 0;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.page-content img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Sharp footer */
+footer {
+  border-top: 2px solid var(--hr);
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+}
+
+/* Enhanced typography */
+.page-content p {
+  text-align: justify;
+  hyphens: auto;
+}
+
+/* Sharp focus states */
+a:focus,
+button:focus,
+input:focus {
+  outline: 2px solid var(--main-link);
+  outline-offset: 2px;
+}
+
+/* Enhanced selection */
+::selection {
+  background: var(--main-link);
+  color: var(--page-background);
+}
+
+::-moz-selection {
+  background: var(--main-link);
+  color: var(--page-background);
+}
+
+@media (prefers-color-scheme: light) {
+  .site-header h1 a {
+    color: var(--text-primary);
+  }
+  .site-header nav a.active,
+  .site-header nav a[aria-current="page"] {
+    color: #fff;
+    background: var(--main-link);
+    border-color: var(--main-link);
+  }
+  .site-header nav a {
+    color: var(--main-link);
+    border-color: var(--main-link);
+    background: transparent;
+  }
+  blockquote {
+    background: linear-gradient(
+      90deg,
+      var(--blockquote-background) 0%,
+      rgba(240, 248, 255, 0.8) 100%
+    );
+  }
+  hr::before {
+    background: var(--page-background);
+    color: var(--main-link);
+  }
+  a.post-date,
+  .post-date-wrapper > time {
+    background: var(--code-background);
+    color: var(--main-text);
+    border: 1px solid var(--code-border);
+  }
+  .page-content img {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  }
+}

@@ -1,0 +1,27 @@
+name = "bemused"
+license = "MIT"
+licenselink = "https://github.com/dhruv/hugo-theme-bemused/blob/main/LICENSE"
+description = "A clean, paper-like Hugo theme with responsive design and seamless dark/light mode support"
+homepage = "https://github.com/dhruv/hugo-theme-bemused"
+tags = [
+  "blog",
+  "clean",
+  "minimal",
+  "responsive",
+  "dark-mode",
+  "light-mode",
+  "paper",
+  "modern",
+]
+features = [
+  "responsive",
+  "dark-mode",
+  "bootstrap",
+  "clean-design",
+  "typography",
+]
+min_version = "0.80.0"
+
+[author]
+name = "Dhruv Singhal"
+homepage = "https://github.com/dhruv"

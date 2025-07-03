@@ -1,0 +1,33 @@
+# Ignore Hugo content and generated files
+content/
+content
+public/
+data/
+resources/
+.DS_Store
+hugo0.91
+*.lock
+*.log
+*.bak
+*.swp
+*.tmp
+*.sublime*
+*.vscode/
+
+# Ignore any user uploads or local config
+*.local
+*.env
+
+# Ignore backup and temp files
+*~
+
+# Allow theme/layout/static/i18n/config files
+!layouts/
+!static/
+!i18n/
+!config.json
+!theme.toml
+!plugin.json
+!README.md
+!LICENSE
+!THEME_CUSTOMIZATION.md 
