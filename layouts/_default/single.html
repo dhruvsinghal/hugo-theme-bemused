@@ -3,36 +3,22 @@
   {{ if .Title }}
   <header class="post-header">
     <h1 class="post-title">{{ .Title }}</h1>
-    {{ partial "post-meta" . }}
+    {{ if .Params.categories }}
+    <aside class="post-meta">
+      {{ if .Params.categories }}
+      <nav class="categories">
+        <span>Categories:</span>
+        {{ range $index, $category := .Params.categories }}
+          {{ if gt $index 0 }}, {{ end }}
+          <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
+        {{ end }}
+      </nav>
+      {{ end }}
+    </aside>
+    {{ end }}
   </header>
   {{ end }}
 
-  <section class="post-content">
-    {{ .Content }}
-  </section>
-
-  {{ if or .Params.tags .Params.categories }}
-  <footer class="post-footer mt-4">
-    {{ if .Params.categories }}
-    {{ with .GetTerms "categories" }}
-    <nav class="post-categories mb-3">
-      <h6 class="mb-2">Categories:</h6>
-      {{ range . }}
-      <a href="{{ .RelPermalink }}" class="tag-link">{{ .LinkTitle }}</a>
-      {{ end }}
-    </nav>
-    {{ end }}
-    {{ end }}
-    
-    {{ if .Params.tags }}
-    <nav class="post-tags">
-      <h6 class="mb-2">Tags:</h6>
-      {{ range .Params.tags }}
-      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-link"># {{ . }}</a>
-      {{ end }}
-    </nav>
-    {{ end }}
-  </footer>
-  {{ end }}
+  <section class="post-content">{{ .Content }}</section>
 </article>
 {{ end }}
