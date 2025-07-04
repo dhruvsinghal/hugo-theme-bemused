@@ -18,7 +18,7 @@
         <nav class="categories">
           <span>Categories:</span>
           {{ range $index, $category := .Params.categories }}
-            {{ if gt $index 0 }}, {{ end }}
+            {{ if gt $index 0 }},{{ end }}
             <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
           {{ end }}
         </nav>
