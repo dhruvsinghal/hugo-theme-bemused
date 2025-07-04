@@ -3,5 +3,5 @@
   {{ if $showLabel }}
   <span>Categories:</span>
   {{ end }}
-  {{ range $index, $category := .context.Params.categories }}{{ if gt $index 0 }},{{ end }}<a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>{{ end }}
+  {{ range $index, $category := .context.Params.categories }}{{ if gt $index 0 }}, {{ end }}<a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>{{ end }}
 </nav> 
