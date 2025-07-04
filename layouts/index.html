@@ -12,14 +12,11 @@
       </h2>
       {{ end }}
       
+      {{ if .Params.categories }}
       <aside class="post-meta">
-        {{ if .Date }}
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "dateformat/long" . }}</time>
-        {{ end }}
-        
         {{ if .Params.categories }}
-        {{ if .Date }} • {{ end }}
         <nav class="categories">
+          <span>Categories:</span>
           {{ range $index, $category := .Params.categories }}
             {{ if gt $index 0 }}, {{ end }}
             <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
@@ -27,6 +24,7 @@
         </nav>
         {{ end }}
       </aside>
+      {{ end }}
     </header>
 
     <section class="post-excerpt">

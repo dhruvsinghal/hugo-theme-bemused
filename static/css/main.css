@@ -119,12 +119,12 @@ h6 {
 }
 
 h1 {
-  font-size: var(--font-5xl);
+  font-size: var(--font-3xl);
   letter-spacing: calc(var(--scale-base) * -0.025);
   margin-top: var(--space-2xl);
 }
 h2 {
-  font-size: var(--font-3xl);
+  font-size: var(--font-2xl);
   margin-top: var(--space-3xl);
 }
 h3 {
@@ -132,15 +132,15 @@ h3 {
   margin-top: var(--space-2xl);
 }
 h4 {
-  font-size: var(--font-2xl);
+  font-size: var(--font-lg);
   margin-top: var(--space-2xl);
 }
 h5 {
-  font-size: var(--font-xl);
+  font-size: var(--font-md);
   margin-top: var(--space-2xl);
 }
 h6 {
-  font-size: var(--font-lg);
+  font-size: var(--font-sm);
   margin-top: var(--space-2xl);
 }
 
@@ -237,19 +237,8 @@ a:hover {
   padding: var(--space-lg) 0;
 }
 
-/* Posts and Articles */
-.post-article,
-.post-preview,
-.page-header,
-.no-posts,
-.archive,
-.photos-gallery,
-.pagination-nav {
-  @extend .card;
-}
-
 .post-title {
-  font-size: var(--font-5xl);
+  font-size: var(--font-3xl);
   font-weight: 500;
   letter-spacing: calc(var(--scale-base) * -0.025);
   margin-bottom: var(--space-lg);
@@ -489,17 +478,17 @@ blockquote {
   }
 
   h1 {
-    font-size: var(--font-4xl);
+    font-size: var(--font-3xl);
   }
   h2 {
-    font-size: var(--font-3xl);
+    font-size: var(--font-2xl);
   }
   h3 {
     font-size: var(--font-xl);
   }
 
   .site-title {
-    font-size: var(--font-3xl);
+    font-size: var(--font-4xl);
   }
   .post-title {
     font-size: var(--font-3xl);
