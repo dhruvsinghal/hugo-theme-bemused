@@ -53,12 +53,10 @@
         document.documentElement.setAttribute("data-theme", theme);
       }
 
-      // Update theme toggle button text
       const themeToggle = document.getElementById("theme-toggle");
       if (themeToggle) {
         const themeText = themeToggle.querySelector(".theme-text");
         if (themeText) {
-          // CSS will handle the emoji display based on data-theme attribute
           themeText.textContent = "";
         }
       }
@@ -69,7 +67,6 @@
     window.addEventListener("DOMContentLoaded", () => {
       const themeToggle = document.getElementById("theme-toggle");
       if (themeToggle) {
-        // Set initial theme display
         setTheme(getPreferredTheme());
 
         themeToggle.addEventListener("click", () => {

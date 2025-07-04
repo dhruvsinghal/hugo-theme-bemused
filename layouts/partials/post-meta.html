@@ -1,0 +1,22 @@
+{{ if or .Date .Params.author .Params.categories }}
+<aside class="post-meta">
+  {{ if .Date }}
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "dateformat/long" . }}</time>
+  {{ end }}
+  
+  {{ if .Params.author }}
+  {{ if .Date }} • {{ end }}
+  <address class="author">{{ .Params.author }}</address>
+  {{ end }}
+  
+  {{ if .Params.categories }}
+  {{ if or .Date .Params.author }} • {{ end }}
+  <nav class="categories">
+    {{ range $index, $category := .Params.categories }}
+      {{ if gt $index 0 }}, {{ end }}
+      <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
+    {{ end }}
+  </nav>
+  {{ end }}
+</aside>
+{{ end }} 

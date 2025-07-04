@@ -14,7 +14,7 @@
       
       <aside class="post-meta">
         {{ if .Date }}
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "dateformat/long" . }}</time>
         {{ end }}
         
         {{ if .Params.categories }}
@@ -30,21 +30,7 @@
     </header>
 
     <section class="post-excerpt">
-      {{ if in .RawContent "<!--more-->" }}
-        {{ $splitContents := split .RawContent "<!--more-->" }}
-        {{ $summary := index $splitContents 0 }}
-        {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
-        {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
-        {{ $summary | markdownify }}
-        <p class="mt-3">
-          <a class="btn btn-primary btn-sm" href="{{ .Permalink }}">Read more →</a>
-        </p>
-      {{ else if .Params.custom_summary }}
-        <p>{{ .Summary | safeHTML }}</p>
-        <p class="mt-3">
-          <a class="btn btn-primary btn-sm" href="{{ .Permalink }}">Read more →</a>
-        </p>
-      {{ else if .Summary }}
+      {{ if .Summary }}
         {{ .Summary }}
         {{ if .Truncated }}
         <p class="mt-3">

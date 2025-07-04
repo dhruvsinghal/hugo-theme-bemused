@@ -9,18 +9,6 @@
 
       <section class="col-auto">
         <nav class="site-nav">
-          <section class="nav-links">
-            {{ range .Site.Menus.main }} {{ if .Page.Params.redirect_url }}
-            <a class="nav-link" href="{{ .Page.Params.redirect_url }}"
-              >{{ .Name }}</a
-            >
-            {{ else }}
-            <a class="nav-link" href="{{ .URL | relLangURL | safeURL }}"
-              >{{ .Name }}</a
-            >
-            {{ end }} {{ end }}
-          </section>
-
           <button
             id="theme-toggle"
             class="theme-toggle"

@@ -1,19 +1,11 @@
 {
   "title": "Bemused",
   "author": { "name": "Dhruv Singhal", "avatar": "" },
-  "mediaTypes": { "application/json": { "suffixes": ["json"] } },
-  "outputFormats": {},
-  "outputs": {
-    "home": ["HTML"],
-    "page": ["HTML"],
-    "section": ["HTML"],
-    "taxonomy": ["HTML"],
-    "term": ["HTML"]
+  "taxonomies": {
+    "category": "categories",
+    "tag": "tags"
   },
-  "taxonomies": { "category": "categories" },
-  "blackfriday": { "fractions": false },
   "markup": { "goldmark": { "renderer": { "unsafe": true } } },
   "enableRobotsTXT": true,
-  "paginate": 20,
-  "pluralizeListTitles": false
+  "paginate": 20
 }

@@ -15,8 +15,6 @@
       </section>
     </main>
 
-    {{ partial "footer.html" . }} {{ range .Site.Params.plugins_js }}
-    <script src="{{ . }}"></script>
-    {{ end }}
+    {{ partial "footer.html" . }}
   </body>
 </html>
