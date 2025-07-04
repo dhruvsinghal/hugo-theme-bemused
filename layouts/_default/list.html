@@ -2,17 +2,14 @@
 <header class="page-header">
   {{ if .Title }}
   <h1 class="page-title">{{ .Title }}</h1>
-  {{ end }}
-  {{ if .Content }}
-  <section class="page-description">
-    {{ .Content }}
-  </section>
+  {{ end }} {{ if .Content }}
+  <section class="page-description">{{ .Content }}</section>
   {{ end }}
 </header>
 
 <section class="posts-list">
-  {{ $paginator := .Paginate (where .Pages.ByDate.Reverse "Type" "post") }}
-  {{ range .Paginator.Pages }}
+  {{ $paginator := .Paginate (where .Pages.ByDate.Reverse "Type" "post") }} {{
+  range .Paginator.Pages }}
   <article class="post-preview">
     <header class="post-header">
       {{ if .Title }}
@@ -20,30 +17,21 @@
         <a href="{{ .Permalink }}" class="text-decoration-none">{{ .Title }}</a>
       </h2>
       {{ end }}
-      
+
       <aside class="post-meta">
-        {{ if .Date }}
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ partial "dateformat/long" . }}</time>
-        {{ end }}
-        
-        {{ if .Params.categories }}
-        {{ if .Date }} • {{ end }}
-        {{ partial "categories" (dict "context" . "showLabel" false) }}
-        {{ end }}
+        {{ if .Params.categories }} {{ partial "categories" (dict "context" .
+        "showLabel" false) }} {{ end }}
       </aside>
     </header>
 
     <section class="post-excerpt">
-      {{ if .Summary }}
-        {{ .Summary }}
-        {{ if .Truncated }}
-        <p class="mt-3">
-          <a class="btn btn-primary btn-sm" href="{{ .Permalink }}">Read more →</a>
-        </p>
-        {{ end }}
-      {{ else }}
-        {{ .Content }}
-      {{ end }}
+      {{ if .Summary }} {{ .Summary }} {{ if .Truncated }}
+      <p class="mt-3">
+        <a class="btn btn-primary btn-sm" href="{{ .Permalink }}"
+          >Read more →</a
+        >
+      </p>
+      {{ end }} {{ else }} {{ .Content }} {{ end }}
     </section>
   </article>
   {{ end }}
@@ -53,21 +41,28 @@
 <nav class="pagination-nav">
   <section class="pagination-controls">
     {{ if $paginator.HasPrev }}
-    <a class="btn btn-outline-primary" href="{{ $paginator.Prev.URL }}" title="Previous Page">
+    <a
+      class="btn btn-outline-primary"
+      href="{{ $paginator.Prev.URL }}"
+      title="Previous Page"
+    >
       ← Newer Posts
     </a>
     {{ end }}
-    
+
     <aside class="pagination-info">
       Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}
     </aside>
-    
+
     {{ if $paginator.HasNext }}
-    <a class="btn btn-outline-primary" href="{{ $paginator.Next.URL }}" title="Next Page">
+    <a
+      class="btn btn-outline-primary"
+      href="{{ $paginator.Next.URL }}"
+      title="Next Page"
+    >
       Older Posts →
     </a>
     {{ end }}
   </section>
 </nav>
-{{ end }}
-{{ end }}
+{{ end }} {{ end }}
