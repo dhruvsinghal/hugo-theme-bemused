@@ -336,11 +336,6 @@ a:hover {
   color: white;
 }
 
-.button {
-  @extend .btn;
-  @extend .btn-outline-primary;
-}
-
 /* Archive */
 .archive-item {
   margin-bottom: var(--space-xl);
