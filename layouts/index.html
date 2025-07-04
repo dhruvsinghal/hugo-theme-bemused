@@ -1,10 +1,10 @@
 {{ define "main" }}
-<div class="posts-list">
+<section class="posts-list">
   {{ $posts := where .Site.Pages.ByDate.Reverse "Type" "post" }}
   {{ if $posts }}
   {{ $paginator := .Paginate $posts }}
   {{ range .Paginator.Pages }}
-  <article class="content-card post-preview">
+  <article class="post-preview">
     <header class="post-header">
       {{ if .Title }}
       <h2 class="post-title">
@@ -12,24 +12,24 @@
       </h2>
       {{ end }}
       
-      <div class="post-meta">
+      <aside class="post-meta">
         {{ if .Date }}
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
         {{ end }}
         
         {{ if .Params.categories }}
         {{ if .Date }} • {{ end }}
-        <span class="categories">
+        <nav class="categories">
           {{ range $index, $category := .Params.categories }}
             {{ if gt $index 0 }}, {{ end }}
             <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
           {{ end }}
-        </span>
+        </nav>
         {{ end }}
-      </div>
+      </aside>
     </header>
 
-    <div class="post-excerpt">
+    <section class="post-excerpt">
       {{ if in .RawContent "<!--more-->" }}
         {{ $splitContents := split .RawContent "<!--more-->" }}
         {{ $summary := index $splitContents 0 }}
@@ -54,51 +54,47 @@
       {{ else }}
         {{ .Content }}
       {{ end }}
-    </div>
+    </section>
 
     {{ if .Params.tags }}
     <footer class="post-footer">
-      <div class="post-tags">
+      <nav class="post-tags">
         {{ range .Params.tags }}
-        <span class="badge bg-light text-dark me-1"># {{ . }}</span>
+        <span class="tag-badge"># {{ . }}</span>
         {{ end }}
-      </div>
+      </nav>
     </footer>
     {{ end }}
   </article>
   {{ end }}
 
   {{ if or $paginator.HasPrev $paginator.HasNext }}
-  <nav class="pagination-nav content-card">
-    <div class="d-flex justify-content-between align-items-center">
-      <div>
-        {{ if $paginator.HasPrev }}
-        <a class="btn btn-outline-primary" href="{{ $paginator.Prev.URL }}" title="Previous Page">
-          ← Newer Posts
-        </a>
-        {{ end }}
-      </div>
+  <nav class="pagination-nav">
+    <section class="pagination-controls">
+      {{ if $paginator.HasPrev }}
+      <a class="btn btn-outline-primary" href="{{ $paginator.Prev.URL }}" title="Previous Page">
+        ← Newer Posts
+      </a>
+      {{ end }}
       
-      <div class="pagination-info text-muted small">
+      <aside class="pagination-info">
         Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}
-      </div>
+      </aside>
       
-      <div>
-        {{ if $paginator.HasNext }}
-        <a class="btn btn-outline-primary" href="{{ $paginator.Next.URL }}" title="Next Page">
-          Older Posts →
-        </a>
-        {{ end }}
-      </div>
-    </div>
+      {{ if $paginator.HasNext }}
+      <a class="btn btn-outline-primary" href="{{ $paginator.Next.URL }}" title="Next Page">
+        Older Posts →
+      </a>
+      {{ end }}
+    </section>
   </nav>
   {{ end }}
   
   {{ else }}
-  <div class="no-posts content-card text-center">
+  <section class="no-posts">
     <h3>No posts yet</h3>
     <p class="text-muted">Check back soon for new content!</p>
-  </div>
+  </section>
   {{ end }}
-</div>
+</section>
 {{ end }}

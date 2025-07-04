@@ -1,19 +1,19 @@
 {{ define "main" }}
-<div class="page-header content-card">
+<header class="page-header">
   {{ if .Title }}
   <h1 class="page-title">{{ .Title }}</h1>
   {{ end }}
   {{ if .Content }}
-  <div class="page-description">
+  <section class="page-description">
     {{ .Content }}
-  </div>
+  </section>
   {{ end }}
-</div>
+</header>
 
-<div class="posts-list">
-      {{ $paginator := .Paginate (where .Pages.ByDate.Reverse "Type" "post") }}
-      {{ range .Paginator.Pages }}
-  <article class="content-card post-preview">
+<section class="posts-list">
+  {{ $paginator := .Paginate (where .Pages.ByDate.Reverse "Type" "post") }}
+  {{ range .Paginator.Pages }}
+  <article class="post-preview">
     <header class="post-header">
       {{ if .Title }}
       <h2 class="post-title">
@@ -21,34 +21,34 @@
       </h2>
       {{ end }}
       
-      <div class="post-meta">
+      <aside class="post-meta">
         {{ if .Date }}
         <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
         {{ end }}
         
         {{ if .Params.categories }}
         {{ if .Date }} • {{ end }}
-        <span class="categories">
+        <nav class="categories">
           {{ range $index, $category := .Params.categories }}
             {{ if gt $index 0 }}, {{ end }}
             <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
           {{ end }}
-        </span>
+        </nav>
         {{ end }}
-          </div>
+      </aside>
     </header>
 
-    <div class="post-excerpt">
-                  {{ if in .RawContent "<!--more-->" }}
-                          {{ $splitContents := split .RawContent "<!--more-->" }}
-                          {{ $summary := index $splitContents 0 }}
-                          {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
-                          {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
+    <section class="post-excerpt">
+      {{ if in .RawContent "<!--more-->" }}
+        {{ $splitContents := split .RawContent "<!--more-->" }}
+        {{ $summary := index $splitContents 0 }}
+        {{ $summary := replaceRE "\\[\\^.*?\\]" "" $summary }}
+        {{ $summary := replaceRE "\\n\\[\\^.*?\\]:.*" "" $summary }}
         {{ $summary | markdownify }}
         <p class="mt-3">
           <a class="btn btn-primary btn-sm" href="{{ .Permalink }}">Read more →</a>
         </p>
-                  {{ else if .Params.custom_summary }}
+      {{ else if .Params.custom_summary }}
         <p>{{ .Summary | safeHTML }}</p>
         <p class="mt-3">
           <a class="btn btn-primary btn-sm" href="{{ .Permalink }}">Read more →</a>
@@ -59,48 +59,44 @@
         <p class="mt-3">
           <a class="btn btn-primary btn-sm" href="{{ .Permalink }}">Read more →</a>
         </p>
-                  {{ end }}
-          {{ else }}
-                  {{ .Content }}
+        {{ end }}
+      {{ else }}
+        {{ .Content }}
       {{ end }}
-              </div>
+    </section>
 
     {{ if .Params.tags }}
     <footer class="post-footer">
-      <div class="post-tags">
+      <nav class="post-tags">
         {{ range .Params.tags }}
-        <span class="badge bg-light text-dark me-1"># {{ . }}</span>
-          {{ end }}
-      </div>
+        <span class="tag-badge"># {{ . }}</span>
+        {{ end }}
+      </nav>
     </footer>
     {{ end }}
   </article>
   {{ end }}
-</div>
+</section>
 
 {{ if or $paginator.HasPrev $paginator.HasNext }}
-<nav class="pagination-nav content-card">
-  <div class="d-flex justify-content-between align-items-center">
-    <div>
-      {{ if $paginator.HasPrev }}
-      <a class="btn btn-outline-primary" href="{{ $paginator.Prev.URL }}" title="Previous Page">
-        ← Newer Posts
-      </a>
-      {{ end }}
-  </div>
-    
-    <div class="pagination-info text-muted small">
-      Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}
-</div>
-    
-    <div>
-    {{ if $paginator.HasNext }}
-      <a class="btn btn-outline-primary" href="{{ $paginator.Next.URL }}" title="Next Page">
-        Older Posts →
-      </a>
+<nav class="pagination-nav">
+  <section class="pagination-controls">
+    {{ if $paginator.HasPrev }}
+    <a class="btn btn-outline-primary" href="{{ $paginator.Prev.URL }}" title="Previous Page">
+      ← Newer Posts
+    </a>
     {{ end }}
-</div>
-  </div>
+    
+    <aside class="pagination-info">
+      Page {{ $paginator.PageNumber }} of {{ $paginator.TotalPages }}
+    </aside>
+    
+    {{ if $paginator.HasNext }}
+    <a class="btn btn-outline-primary" href="{{ $paginator.Next.URL }}" title="Next Page">
+      Older Posts →
+    </a>
+    {{ end }}
+  </section>
 </nav>
 {{ end }}
 {{ end }}

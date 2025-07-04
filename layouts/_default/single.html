@@ -1,45 +1,45 @@
 {{ define "main" }}
-<article class="content-card">
+<article class="post-article">
   {{ if .Title }}
   <header class="post-header">
     <h1 class="post-title">{{ .Title }}</h1>
     
     {{ if or .Date .Params.author .Params.categories }}
-    <div class="post-meta">
+    <aside class="post-meta">
       {{ if .Date }}
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
       {{ end }}
       
       {{ if .Params.author }}
       {{ if .Date }} • {{ end }}
-      <span class="author">{{ .Params.author }}</span>
+      <address class="author">{{ .Params.author }}</address>
       {{ end }}
       
       {{ if .Params.categories }}
       {{ if or .Date .Params.author }} • {{ end }}
-      <span class="categories">
+      <nav class="categories">
         {{ range $index, $category := .Params.categories }}
           {{ if gt $index 0 }}, {{ end }}
           <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
         {{ end }}
-      </span>
+      </nav>
       {{ end }}
-    </div>
+    </aside>
     {{ end }}
   </header>
   {{ end }}
 
-  <div class="post-content">
+  <section class="post-content">
     {{ .Content }}
-  </div>
+  </section>
 
   {{ if .Params.tags }}
   <footer class="post-footer mt-4">
-    <div class="post-tags">
+    <nav class="post-tags">
       {{ range .Params.tags }}
-      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="badge bg-secondary text-decoration-none me-2 mb-2"># {{ . }}</a>
+      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-link"># {{ . }}</a>
       {{ end }}
-</div>
+    </nav>
   </footer>
   {{ end }}
 </article>

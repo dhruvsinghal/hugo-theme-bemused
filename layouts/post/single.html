@@ -1,56 +1,56 @@
 {{ define "main" }}
-<article class="content-card">
+<article class="post-article">
   <header class="post-header">
     {{ if .Title }}
     <h1 class="post-title">{{ .Title }}</h1>
     {{ end }}
     
-    <div class="post-meta">
+    <aside class="post-meta">
       {{ if .Date }}
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
       {{ end }}
       
       {{ if .Params.author }}
       {{ if .Date }} • {{ end }}
-      <span class="author">{{ .Params.author }}</span>
+      <address class="author">{{ .Params.author }}</address>
       {{ end }}
       
       {{ if .Params.categories }}
       {{ if or .Date .Params.author }} • {{ end }}
-      <span class="categories">
+      <nav class="categories">
         {{ range $index, $category := .Params.categories }}
           {{ if gt $index 0 }}, {{ end }}
           <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
         {{ end }}
-      </span>
+      </nav>
       {{ end }}
-    </div>
+    </aside>
   </header>
 
-  <div class="post-content">
+  <section class="post-content">
     {{ .Content }}
-</div>
+  </section>
 
   {{ if or .Params.tags .Params.categories }}
   <footer class="post-footer mt-4">
-{{ if .Params.categories }}
-{{ with .GetTerms "categories" }}
-    <div class="post-categories mb-3">
+    {{ if .Params.categories }}
+    {{ with .GetTerms "categories" }}
+    <nav class="post-categories mb-3">
       <h6 class="mb-2">Categories:</h6>
-    {{ range . }}
-      <a href="{{ .RelPermalink }}" class="badge bg-primary text-decoration-none me-2 mb-2">{{ .LinkTitle }}</a>
+      {{ range . }}
+      <a href="{{ .RelPermalink }}" class="tag-link">{{ .LinkTitle }}</a>
       {{ end }}
-    </div>
+    </nav>
     {{ end }}
-{{ end }}
+    {{ end }}
     
     {{ if .Params.tags }}
-    <div class="post-tags">
+    <nav class="post-tags">
       <h6 class="mb-2">Tags:</h6>
       {{ range .Params.tags }}
-      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="badge bg-secondary text-decoration-none me-2 mb-2"># {{ . }}</a>
-{{ end }}
-</div>
+      <a href="{{ "/tags/" | relLangURL }}{{ . | urlize }}" class="tag-link"># {{ . }}</a>
+      {{ end }}
+    </nav>
     {{ end }}
   </footer>
   {{ end }}

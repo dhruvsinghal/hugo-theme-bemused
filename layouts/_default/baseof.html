@@ -6,11 +6,13 @@
     {{ partial "header.html" . }}
 
     <main class="main-content">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-8 col-xl-7">{{ block "main" . }}{{ end }}</div>
-        </div>
-      </div>
+      <section class="container">
+        <section class="row justify-content-center">
+          <section class="col-lg-8 col-xl-7">
+            {{ block "main" . }}{{ end }}
+          </section>
+        </section>
+      </section>
     </main>
 
     {{ partial "footer.html" . }} {{ range .Site.Params.plugins_js }}
