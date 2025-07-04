@@ -25,16 +25,6 @@
       </p>
       {{ end }} {{ else }} {{ .Content }} {{ end }}
     </section>
-
-    {{ if .Params.tags }}
-    <footer class="post-footer">
-      <nav class="post-tags">
-        {{ range .Params.tags }}
-        <span class="tag-badge"># {{ . }}</span>
-        {{ end }}
-      </nav>
-    </footer>
-    {{ end }}
   </article>
   {{ end }} {{ if or $paginator.HasPrev $paginator.HasNext }}
   <nav class="pagination-nav">
