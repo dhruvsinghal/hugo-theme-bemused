@@ -5,15 +5,8 @@
     <h1 class="post-title">{{ .Title }}</h1>
     {{ if .Params.categories }}
     <aside class="post-meta">
-      {{ if .Params.categories }}
-      <nav class="categories">
-        <span>Categories:</span>
-        {{ range $index, $category := .Params.categories }}
-          {{ if gt $index 0 }},{{ end }}
-          <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
-        {{ end }}
-      </nav>
-      {{ end }}
+      {{ if .Params.categories }} {{ partial "categories" (dict "context" .
+      "showLabel" true) }} {{ end }}
     </aside>
     {{ end }}
   </header>

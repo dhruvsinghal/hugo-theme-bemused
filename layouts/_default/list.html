@@ -28,12 +28,7 @@
         
         {{ if .Params.categories }}
         {{ if .Date }} • {{ end }}
-        <nav class="categories">
-          {{ range $index, $category := .Params.categories }}
-            {{ if gt $index 0 }},{{ end }}
-            <a href="{{ "/categories/" | relLangURL }}{{ . | urlize }}" class="category-link">{{ . }}</a>
-          {{ end }}
-        </nav>
+        {{ partial "categories" (dict "context" . "showLabel" false) }}
         {{ end }}
       </aside>
     </header>
